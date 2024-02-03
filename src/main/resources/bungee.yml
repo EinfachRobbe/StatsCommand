@@ -1,0 +1,9 @@
+name: StatsCommand
+version: '${project.version}'
+main: de.einfachrobbe.stats.main
+softDepends:
+- Plan
+
+
+
+
