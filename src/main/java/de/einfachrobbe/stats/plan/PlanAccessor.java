@@ -1,24 +1,17 @@
-package de.einfachrobbe.stats.util;
+package de.einfachrobbe.stats.plan;
 
-import com.djrapitops.plan.extension.NotReadyException;
 import com.djrapitops.plan.query.QueryService;
-import org.checkerframework.checker.units.qual.A;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-public class QueryAPIAccessor {
+public class PlanAccessor {
 
     private final QueryService queryService;
 
-    public QueryAPIAccessor(QueryService queryService) {
+    public PlanAccessor(QueryService queryService) {
         this.queryService = queryService;
         createTable();
         queryService.subscribeDataClearEvent(this::recreateTable);

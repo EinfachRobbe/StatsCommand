@@ -1,7 +1,7 @@
 package de.einfachrobbe.stats.command;
 
 import de.einfachrobbe.stats.util.ColorUtil;
-import de.einfachrobbe.stats.util.SQLaccessor;
+import de.einfachrobbe.stats.luckperms.LuckPermsAccessor;
 import de.einfachrobbe.stats.main;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -35,7 +35,7 @@ public class StatsCommand extends Command {
 
             p.sendMessage(main.prefix + "\n"
                     + head.get(0) + " §6Name: §r§7§o" + p.getName() + "\n"
-                    + head.get(1) + " §6Rank: §r" + SQLaccessor.getPrefixFromGroup(SQLaccessor.getPrimaryGroupFromUUID(p.getUniqueId())) + "§r\n"
+                    + head.get(1) + " §6Rank: §r" + LuckPermsAccessor.getPrefixfromPlayer(p) + " @ " + LuckPermsAccessor.getPrimaryGroupWeightfromPlayer(p) + "§r\n"
                     + head.get(2) + " §6\u2300Ping: §r§7§o" + main.acc.get().getAveragePing(p.getUniqueId()) + "ms\n"
                     + head.get(3) + " §6Geolocation: §r§7§o" + main.acc.get().getGeolocationfromUUID(p.getUniqueId()) + "\n"
                     + head.get(4) + " §6Playtime: §r§7§o" + main.acc.get().getTotalPlaytime(p.getUniqueId()) + "\n"
