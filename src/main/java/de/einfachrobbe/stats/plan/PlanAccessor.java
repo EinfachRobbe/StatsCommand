@@ -152,7 +152,7 @@ public class PlanAccessor {
                     sum = sum + durations.get(i);
                 }
 
-                double average = sum / durations.size();
+                double average = sum / (durations.size() + 1);
 
                 double timemin = average / 60000;
                 double timehours = average / 3600000;
@@ -281,7 +281,7 @@ public class PlanAccessor {
         return (String) queryService.query(sql, preparedStatement -> {
             preparedStatement.setString(1, String.valueOf(addressId));
             try (ResultSet set = preparedStatement.executeQuery()) {
-                return set.next() ? set.getString("join_address") : null;
+                return set.next() ? set.getString("join_address") : "n/a";
             }
         });
     }
@@ -317,6 +317,8 @@ public class PlanAccessor {
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 return null;
+            } catch (NoSuchElementException ex) {
+                return -1;
             }
         });
     }
