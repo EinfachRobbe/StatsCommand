@@ -158,8 +158,8 @@ public class PlanAccessor {
                 double timehours = average / 3600000;
 
                 if (String.valueOf(timehours).startsWith("0.")) {
-                    return round(timemin, 2) + "m";
-                } else return round(timehours, 2) + "h";
+                    return round(timemin) + "m";
+                } else return round(timehours) + "h";
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -227,8 +227,8 @@ public class PlanAccessor {
                 double timehours = sum / 3600000;
 
                 if (String.valueOf(timehours).startsWith("0.")) {
-                    return round(timemin, 2) + "m";
-                } else return round(timehours,2) + "h";
+                    return ((int) timemin) + "m";
+                } else return ((int) timehours) + "h";
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -265,7 +265,7 @@ public class PlanAccessor {
 
                 double average = sum / avg_ping.size();
 
-                return round(average, 2);
+                return round(average);
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -323,9 +323,8 @@ public class PlanAccessor {
         });
     }
 
-    private double round(double value, int decimalPoints) {
-        double d = Math.pow(10, decimalPoints);
-        return Math.round(value * d) / d;
+    private double round(double a) {
+        return Math.round(a * 100.0) / 100.0;
     }
 
     private <T, E> T getKeyByValue(Map<T, E> map, E value) {
